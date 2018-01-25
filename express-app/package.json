@@ -1,0 +1,22 @@
+{
+  "name": "express-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lemosjp01/Express.js-Node.js.git"
+  },
+  "author": "Caio Lemos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lemosjp01/Express.js-Node.js/issues"
+  },
+  "homepage": "https://github.com/lemosjp01/Express.js-Node.js#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
