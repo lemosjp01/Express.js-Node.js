@@ -2,6 +2,12 @@ const express = require('express')
 
 const app = express()
 
+var userRouter = require('./userRoutes')
+
+var bodyParser =  require('body-parser')
+
+app.use(bodyParser.json())
+
 app.use((req, res, next) => {
     console.log('Incluído um primeiro Middleware que intercepta as chamadas de APIs')
     next()
@@ -9,6 +15,8 @@ app.use((req, res, next) => {
     console.log('Incluído um segundo Middleware que intercepta as chamadas de APIs')
     next()
 })
+
+app.use('/user', userRouter)
 
 //API com resposta normal
 app.get('/', (req, res) => {
@@ -36,6 +44,24 @@ app.get('/parametro/:userId', (req, res) => {
     }
     res.send(obj)
 })
+
+//Utilizado para criação de objetos.
+app.post('/incluir', (req, res) => {
+    console.log(req.body)
+    var obj = {
+        nomeRecebido: req.body.nome
+    }
+    res.send(obj)
+})
+
+//Tratamento de erros
+var handleErrors = (err, req, res, next) => {
+    console.log('Tratar qualquer erro de alto nível aqui.')
+    console.log(err)
+    res.status(500).json({resposta: 'Algo está errado.'})
+}
+
+app.use(handleErrors)
 
 const PORT = 3000
 const HOST = 'localhost'
